@@ -7,6 +7,7 @@ import os
 import random
 
 today = datetime.now()
+curdate = today.strftime('%Y-%m-%d')
 city = os.environ['CITY']
 
 app_id = os.environ["APP_ID"]
@@ -40,6 +41,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"cudate":{"value":today},"weather":{"value":wea},"temperature":{"value":temperature},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"curdate":{"value":curdate},"weather":{"value":wea},"temperature":{"value":temperature},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
