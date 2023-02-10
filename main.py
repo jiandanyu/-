@@ -26,7 +26,7 @@ def get_weather():
     url = "https://www.yiketianqi.com/free/day?appid=36612533&appsecret=2TX26ggS&unescape=1&cityid=" + city
     res = requests.get(url).json()
     weather = res
-    return weather['wea'], weather['tem'], weather['tem_day'], weather['tem_night'], weather['win'], weather['city']
+    return weather['wea'], weather['tem'], weather['tem_day'], weather['tem_night'], weather['win'], weather['city'], weather['city']
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -46,8 +46,8 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 
-wea, temperature, low, high, wind, province = get_weather()
-data = {"curdate":{"value":curdate},"weather":{"value":wea},"temperature":{"value":temperature},"province":{"value":province},"city":{"value":city},"low":{"value":low},"low":{"value":low},"high":{"value":high},"wind":{"value":wind},"words":{"value":get_words(), "color":get_random_color()}}
+wea, temperature, low, high, wind, province, cityname = get_weather()
+data = {"curdate":{"value":curdate},"weather":{"value":wea},"temperature":{"value":temperature},"province":{"value":province},"city":{"value":cityname},"low":{"value":low},"low":{"value":low},"high":{"value":high},"wind":{"value":wind},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 res1 = wm.send_template(user1_id, template_id, data)
 
