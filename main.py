@@ -25,7 +25,7 @@ def get_weather():
 #   return weather['weather'], math.floor(weather['temp']), math.floor(weather['low']), math.floor(weather['high']), weather['wind'], weather['province']
     url = "https://www.yiketianqi.com/free/day?appid=36612533&appsecret=2TX26ggS&unescape=1&cityid=" + city
     res = requests.get(url).json()
-    weather = res[0]
+    weather = res
     return weather['wea'], math.floor(weather['tem']), math.floor(weather['tem_day']), math.floor(weather['tem_night']), weather['win'], weather['city']
 
 def get_count():
