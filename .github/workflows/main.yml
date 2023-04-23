@@ -8,12 +8,17 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     name: send morning to your girlfriend
-
+    
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    
     steps:
     - name: checkout
       uses: actions/checkout@v3
       with:
         ref: master
+        node-version: ${{ matrix.node-version }}
 
     - name: sender
       uses: actions/setup-python@v2
